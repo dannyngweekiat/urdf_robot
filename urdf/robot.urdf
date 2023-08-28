@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="myRobot">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.2" radius="0.2"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="link1">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0.8 0"/>
+            <geometry>
+                <box size="0.2 2.0 0.2"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="link2">
+        <visual>
+            <origin rpy="0 0 0" xyz="0.8 0 0"/>
+            <geometry>
+                <box size="2.0 0.2 0.2"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="link1_to_base_link" type="revolute">
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0.0" upper="3.142" velocity="0.5"/>
+        <origin rpy="0 0 0" xyz="0 0 0.2"/>
+        <parent link="base_link"/>
+        <child link="link1"/>
+    </joint>
+
+    <joint name="link2_to_link1" type="revolute">
+        <axis xyz="0 0 1"/>
+        <limit effort="1000.0" lower="0.0" upper="3.142" velocity="0.5"/>
+        <origin rpy="0 0 0" xyz="0 1.8 0.2"/>
+        <parent link="link1"/>
+        <child link="link2"/>
+    </joint>
+</robot>
